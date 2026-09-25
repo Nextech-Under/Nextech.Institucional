@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NexTech — Soluções de Identidade Digital</title>
+<meta name="description" content="A NexTech cria sites profissionais para empresas que ainda não têm presença digital adequada. Transformamos negócios locais em marcas confiáveis na internet.">
+<meta property="og:title" content="NexTech — Soluções de Identidade Digital">
+<meta property="og:description" content="Transformamos empresas sem presença digital em marcas profissionais na internet.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070a12; --bg2:#0c1220; --panel:#0f1626;
+  --cyan:#00d4ff; --violet:#7c5cff; --text:#eaf0fb; --muted:#8d97ae; --line:#1c2438;
+  --ff-display:'Space Grotesk',system-ui,sans-serif; --ff-body:'Inter',system-ui,sans-serif;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){ }
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth; scroll-padding-top:80px;}
+body{background:var(--bg); color:var(--text); font-family:var(--ff-body); line-height:1.6; overflow-x:hidden;}
+img{max-width:100%; display:block;}
+.wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
+a{color:inherit; text-decoration:none;}
+h1,h2,h3{font-family:var(--ff-display); font-weight:600; letter-spacing:-0.01em; line-height:1.1;}
+section{padding:110px 0;}
+@media(max-width:768px){section{padding:70px 0;}}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:11px; font-weight:600; font-size:0.95rem; cursor:pointer; border:1px solid transparent; transition:transform .2s ease, box-shadow .2s ease;}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--violet)); color:#050810;}
+.btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(0,212,255,.4);}
+.btn-ghost{border-color:var(--line); color:var(--text); background:rgba(255,255,255,.02);}
+.btn-ghost:hover{border-color:var(--cyan);}
+.eyebrow{color:var(--cyan); font-size:.85rem; font-weight:600; margin-bottom:14px;}
+.lead{color:var(--muted); font-size:1.05rem; max-width:560px;}
+
+/* header */
+header{position:fixed; top:0; left:0; right:0; z-index:100; padding-top:env(safe-area-inset-top,0px); background:rgba(7,10,18,.75); backdrop-filter:blur(14px); border-bottom:1px solid var(--line);}
+.nav{display:flex; align-items:center; justify-content:space-between; height:76px;}
+.brand{display:flex; flex-direction:column; line-height:1.1;}
+.brand-name{font-family:var(--ff-display); font-weight:700; font-size:1.3rem; background:linear-gradient(135deg,var(--cyan),var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.brand-sub{font-size:.7rem; color:var(--muted);}
+.nav-links{display:flex; gap:32px; font-size:.92rem;}
+.nav-links a{color:var(--muted); transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{display:flex; align-items:center; gap:18px;}
+.burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+.burger span{width:22px; height:2px; background:var(--text);}
+.mobile-menu{display:none; flex-direction:column; gap:18px; padding:24px; border-top:1px solid var(--line); background:var(--bg2);}
+.mobile-menu.open{display:flex;}
+@media(max-width:860px){
+  .nav-links,.nav-cta .btn-ghost{display:none;}
+  .burger{display:flex;}
+}
+
+/* hero */
+.hero{padding:160px 0 100px; position:relative;}
+.hero::before{content:"";position:absolute; top:-100px; right:-200px; width:600px; height:600px; background:radial-gradient(circle,rgba(124,92,255,.25),transparent 70%); filter:blur(40px); pointer-events:none;}
+.hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:60px; align-items:center; position:relative; z-index:1;}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+.hero h1{font-size:clamp(2.2rem,4.6vw,3.4rem); margin-bottom:22px;}
+.hero-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+.hero-tag{display:inline-flex; align-items:center; gap:8px; margin-top:36px; color:var(--muted); font-size:.85rem;}
+.hero-tag .dot{width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 10px var(--cyan);}
+
+.mock{background:var(--panel); border:1px solid var(--line); border-radius:16px; overflow:hidden; box-shadow:0 30px 70px -30px rgba(0,0,0,.6);}
+.mock-bar{display:flex; gap:6px; padding:12px 14px; border-bottom:1px solid var(--line);}
+.mock-bar span{width:9px; height:9px; border-radius:50%; background:#2a3450;}
+.mock-body{padding:22px; display:flex; flex-direction:column; gap:12px;}
+.mock-line{height:10px; border-radius:5px; background:linear-gradient(90deg,#1c2438,#141a2c);}
+.mock-line.w60{width:60%;} .mock-line.w40{width:40%;} .mock-line.w80{width:80%;}
+.mock-block{height:70px; border-radius:10px; background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(124,92,255,.15)); border:1px solid var(--line);}
+
+/* problem */
+.problem-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start; margin-top:44px;}
+@media(max-width:860px){.problem-grid{grid-template-columns:1fr;}}
+.problem-list{display:flex; flex-direction:column; gap:0;}
+.problem-item{display:flex; gap:14px; padding:18px 0; border-bottom:1px solid var(--line);}
+.problem-item:first-child{border-top:1px solid var(--line);}
+.problem-mark{color:var(--violet); font-family:var(--ff-display); font-weight:600;}
+
+/* solutions */
+.card-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px;}
+@media(max-width:900px){.card-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.card-grid{grid-template-columns:1fr;}}
+.card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:26px; transition:border-color .25s ease, transform .25s ease;}
+.card:hover{border-color:var(--cyan); transform:translateY(-4px);}
+.card-icon{font-size:1.5rem; margin-bottom:14px;}
+.card h3{font-size:1.05rem; margin-bottom:8px;}
+.card p{color:var(--muted); font-size:.92rem;}
+
+/* process */
+.process-list{margin-top:44px; display:flex; flex-direction:column;}
+.process-item{display:grid; grid-template-columns:70px 1fr; gap:22px; padding:26px 0; border-top:1px solid var(--line);}
+.process-item:last-child{border-bottom:1px solid var(--line);}
+.process-num{font-family:var(--ff-display); font-size:1.3rem; color:var(--cyan); font-weight:600;}
+.process-item h3{font-size:1.1rem; margin-bottom:6px;}
+.process-item p{color:var(--muted); font-size:.94rem; max-width:520px;}
+
+/* portfolio */
+.pf-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:44px;}
+@media(max-width:900px){.pf-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.pf-grid{grid-template-columns:1fr;}}
+.pf-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+.pf-thumb{height:130px; background:linear-gradient(135deg,rgba(0,212,255,.18),rgba(124,92,255,.18)); display:flex; align-items:center; justify-content:center; font-size:1.8rem;}
+.pf-body{padding:18px;}
+.pf-tag{font-size:.72rem; color:var(--cyan); font-weight:600; margin-bottom:6px;}
+.pf-demo{display:inline-block; margin-top:2px; font-size:.68rem; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:2px 8px;}
+.pf-body h3{font-size:1rem; margin:8px 0 6px;}
+.pf-body p{color:var(--muted); font-size:.87rem; margin-bottom:14px;}
+.pf-link{font-size:.85rem; color:var(--cyan); font-weight:600;}
+
+/* diferencial */
+.diff-tags{display:flex; flex-wrap:wrap; gap:12px; margin-top:36px;}
+.diff-tag{border:1px solid var(--line); border-radius:999px; padding:10px 18px; font-size:.88rem; color:var(--text); background:rgba(255,255,255,.02);}
+.diff-text{margin-top:34px; max-width:640px; color:var(--muted);}
+
+/* about */
+.about-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; margin-top:20px;}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+.about-mark{width:70px; height:70px; border-radius:16px; background:linear-gradient(135deg,var(--cyan),var(--violet)); display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); font-weight:700; color:#050810; font-size:1.3rem; margin-bottom:26px;}
+.about-grid p{color:var(--muted); margin-bottom:16px;}
+
+/* cta */
+.cta-section{background:var(--panel); border:1px solid var(--line); border-radius:22px; padding:70px 50px; text-align:center; position:relative; overflow:hidden;}
+.cta-section::before{content:"";position:absolute; inset:0; background:radial-gradient(circle at 50% 0%,rgba(0,212,255,.15),transparent 60%); pointer-events:none;}
+.cta-section h2{font-size:clamp(1.8rem,3.4vw,2.4rem); margin-bottom:16px; position:relative;}
+.cta-section p{color:var(--muted); max-width:480px; margin:0 auto 30px; position:relative;}
+@media(max-width:640px){.cta-section{padding:50px 24px;}}
+
+/* faq */
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{display:flex; justify-content:space-between; align-items:center; padding:20px 0; cursor:pointer; font-weight:500; gap:20px;}
+.faq-q .icon{color:var(--cyan); font-size:1.2rem; flex-shrink:0; transition:transform .25s ease;}
+.faq-item.open .icon{transform:rotate(45deg);}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+.faq-a p{color:var(--muted); padding-bottom:20px; font-size:.94rem;}
+
+/* footer */
+footer{border-top:1px solid var(--line); padding:60px 0 40px;}
+.foot-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px;}
+.foot-links{display:flex; gap:26px; flex-wrap:wrap; font-size:.9rem; color:var(--muted);}
+.foot-links a:hover{color:var(--text);}
+.foot-bottom{margin-top:40px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:var(--muted); font-size:.82rem;}
+
+.section-head{max-width:640px;}
+.section-head h2{font-size:clamp(1.6rem,3vw,2.1rem);}
+
+@media(prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto !important;}}
+:focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<script>
+  // WhatsApp number — edite aqui
+  const WHATSAPP_NUMBER = "5544999640036";
+  function openWhats(){ window.open("https://wa.me/" + WHATSAPP_NUMBER, "_blank"); }
+</script>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <span class="brand-name">NexTech</span>
+      <span class="brand-sub">Soluções de Identidade Digital</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#inicio">Início</a>
+      <a href="#solucoes">Soluções</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-primary" onclick="openWhats()">Quero criar meu site</button>
+      <button class="burger" id="burgerBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#inicio">Início</a>
+    <a href="#solucoes">Soluções</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contato">Contato</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Sua empresa merece uma presença digital à altura.</h1>
+      <p class="lead">Criamos sites profissionais para empresas que querem ser encontradas, transmitir confiança e transformar sua presença na internet em uma ferramenta de negócio.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="openWhats()">Quero criar meu site</button>
+        <a href="#solucoes" class="btn btn-ghost">Conhecer nossas soluções</a>
+      </div>
+      <div class="hero-tag"><span class="dot"></span> Presença digital profissional para empresas</div>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><span></span><span></span><span></span></div>
+      <div class="mock-body">
+        <div class="mock-line w40"></div>
+        <div class="mock-line w80"></div>
+        <div class="mock-block"></div>
+        <div class="mock-line w60"></div>
+        <div class="mock-line w40"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problema">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Sua empresa está na internet do jeito que deveria?</h2>
+      <p class="lead">Hoje, estar presente nas redes sociais é importante. Mas ter um espaço próprio na internet transmite mais credibilidade e permite que sua empresa apresente seus serviços de forma profissional.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-list">
+        <div class="problem-item"><span class="problem-mark">＋</span><span>Não possui um site</span></div>
+        <div class="problem-item"><span class="problem-mark">＋</span><span>Seu cliente não encontra informações facilmente</span></div>
+        <div class="problem-item"><span class="problem-mark">＋</span><span>A empresa parece menos profissional online</span></div>
+      </div>
+      <div class="problem-list">
+        <div class="problem-item"><span class="problem-mark">＋</span><span>Você depende apenas do Instagram</span></div>
+        <div class="problem-item"><span class="problem-mark">＋</span><span>Não consegue apresentar seus serviços de forma organizada</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solucoes">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>O que a NexTech pode fazer pela sua empresa</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">🌐</div><h3>Site Institucional</h3><p>Apresente sua empresa, seus serviços e seus diferenciais em um site profissional.</p></div>
+      <div class="card"><div class="card-icon">📱</div><h3>Site Responsivo</h3><p>Seu site funcionando perfeitamente em celular, tablet e computador.</p></div>
+      <div class="card"><div class="card-icon">🎨</div><h3>Identidade Digital</h3><p>Aplicamos a identidade da sua empresa em uma experiência digital consistente.</p></div>
+      <div class="card"><div class="card-icon">💬</div><h3>Integração com WhatsApp</h3><p>Facilite o contato entre seus clientes e sua empresa.</p></div>
+      <div class="card"><div class="card-icon">🚀</div><h3>Presença Digital</h3><p>Crie um ponto oficial para sua empresa na internet.</p></div>
+      <div class="card"><div class="card-icon">⚙️</div><h3>Estrutura Personalizada</h3><p>Cada projeto é desenvolvido de acordo com as necessidades do negócio.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Do primeiro contato ao site publicado.</h2>
+    </div>
+    <div class="process-list">
+      <div class="process-item"><div class="process-num">01</div><div><h3>Entendemos seu negócio</h3><p>Conhecemos sua empresa, seus serviços, público e objetivos.</p></div></div>
+      <div class="process-item"><div class="process-num">02</div><div><h3>Planejamos sua presença digital</h3><p>Definimos a estrutura e as informações que o seu site precisa.</p></div></div>
+      <div class="process-item"><div class="process-num">03</div><div><h3>Desenvolvemos seu site</h3><p>Criamos uma experiência visual profissional alinhada à identidade da sua marca.</p></div></div>
+      <div class="process-item"><div class="process-num">04</div><div><h3>Publicamos</h3><p>Colocamos seu site no ar para que seus clientes possam encontrá-lo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Projetos desenvolvidos pela NexTech</h2>
+    </div>
+    <div class="pf-grid" id="pfGrid"></div>
+  </div>
+</section>
+
+<section id="diferencial">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Não criamos apenas sites. Criamos presença digital.</h2>
+      <p class="diff-text">A NexTech entende que um site não deve existir apenas para ocupar um endereço na internet. Ele precisa representar sua empresa, transmitir confiança e facilitar o contato com seus clientes.</p>
+    </div>
+    <div class="diff-tags">
+      <span class="diff-tag">Visual profissional</span>
+      <span class="diff-tag">Experiência pensada para o cliente</span>
+      <span class="diff-tag">Design responsivo</span>
+      <span class="diff-tag">Comunicação clara</span>
+      <span class="diff-tag">Foco no negócio</span>
+      <span class="diff-tag">Atendimento próximo</span>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap about-grid">
+    <div>
+      <div class="about-mark">NX</div>
+      <h2>Conheça a NexTech</h2>
+      <p>A NexTech nasceu com um objetivo simples: ajudar empresas que ainda não possuem uma presença digital profissional a entrarem no ambiente online com uma imagem moderna, confiável e alinhada ao seu negócio.</p>
+      <p>Unimos tecnologia, design e estratégia para criar experiências digitais que representam cada empresa.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><span></span><span></span><span></span></div>
+      <div class="mock-body">
+        <div class="mock-block"></div>
+        <div class="mock-line w60"></div>
+        <div class="mock-line w40"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap">
+    <div class="cta-section">
+      <h2>Pronto para colocar sua empresa na internet?</h2>
+      <p>Conte um pouco sobre sua empresa e descubra como podemos criar uma presença digital profissional para o seu negócio.</p>
+      <button class="btn btn-primary" onclick="openWhats()">Falar com a NexTech</button>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div id="faqList" style="margin-top:34px;"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="brand-name" style="font-size:1.15rem;">NexTech</span>
+        <p style="color:var(--muted); font-size:.85rem; margin-top:6px;">Soluções de Identidade Digital</p>
+      </div>
+      <nav class="foot-links">
+        <a href="#inicio">Início</a>
+        <a href="#solucoes">Soluções</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <button class="btn btn-ghost" onclick="openWhats()">Fale conosco</button>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 NexTech. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// mobile menu
+const burgerBtn = document.getElementById('burgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+// portfolio — projetos demonstrativos (sem clientes reais)
+const projetos = [
+  {icon:"🍕", tag:"Restaurante", name:"Cardápio & Sabor", desc:"Site institucional para restaurante com cardápio digital e localização."},
+  {icon:"💈", tag:"Barbearia", name:"Studio Corte", desc:"Página de agendamento e apresentação de serviços de barbearia."},
+  {icon:"🛍️", tag:"Loja", name:"Loja Ponto Certo", desc:"Vitrine digital institucional para loja física com catálogo de produtos."},
+  {icon:"🏢", tag:"Escritório profissional", name:"Consultoria Base", desc:"Site institucional para escritório de consultoria e serviços profissionais."},
+  {icon:"🔧", tag:"Prestador de serviços", name:"Serviço Direto", desc:"Página de apresentação de serviços com contato direto via WhatsApp."},
+  {icon:"🩺", tag:"Clínica", name:"Clínica Vitalis", desc:"Site institucional para clínica com informações e agendamento de contato."}
+];
+const pfGrid = document.getElementById('pfGrid');
+projetos.forEach(p => {
+  const el = document.createElement('div');
+  el.className = 'pf-card';
+  el.innerHTML = `
+    <div class="pf-thumb">${p.icon}</div>
+    <div class="pf-body">
+      <div class="pf-tag">${p.tag}</div>
+      <span class="pf-demo">Projeto demonstrativo</span>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <span class="pf-link">Ver projeto →</span>
+    </div>`;
+  pfGrid.appendChild(el);
+});
+
+// faq
+const faqs = [
+  {q:"Quanto custa criar um site?", a:"O valor varia de acordo com as necessidades de cada projeto. Entre em contato para receber uma proposta personalizada."},
+  {q:"Quanto tempo leva para criar?", a:"O prazo depende da complexidade do projeto e é combinado diretamente com cada cliente."},
+  {q:"Preciso já ter domínio?", a:"Não é obrigatório. Podemos orientar sobre a escolha e configuração do domínio da sua empresa."},
+  {q:"Preciso contratar hospedagem?", a:"Podemos indicar as melhores opções de hospedagem de acordo com o seu projeto."},
+  {q:"O site funciona no celular?", a:"Sim. Todos os sites desenvolvidos pela NexTech são totalmente responsivos."},
+  {q:"Vocês fazem alterações depois da publicação?", a:"Sim, oferecemos suporte para ajustes e atualizações após a publicação do site."},
+  {q:"Minha empresa precisa ter Instagram?", a:"Não é obrigatório, mas ter redes sociais pode complementar a presença digital do seu negócio."},
+  {q:"Posso atualizar o site depois?", a:"Sim, é possível solicitar atualizações de conteúdo conforme a necessidade da sua empresa."}
+];
+const faqList = document.getElementById('faqList');
+faqs.forEach(f => {
+  const item = document.createElement('div');
+  item.className = 'faq-item';
+  item.innerHTML = `
+    <div class="faq-q"><span>${f.q}</span><span class="icon">+</span></div>
+    <div class="faq-a"><p>${f.a}</p></div>`;
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o => { o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = null; });
+    if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight + "px"; }
+  });
+  faqList.appendChild(item);
+});
+</script>
+
+</body>
+</html>
